@@ -5,7 +5,7 @@ import './styles/global.scss';
 
 import './styles/content.scss';
 import { api } from './services/api';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 interface GenreResponseProps {
   id: number;
@@ -52,13 +52,16 @@ export function App() {
       });
   }, [selectedGenreId]);
 
+  const handleClickButton = useCallback((id: number) => {
+    setSelectedGenreId(id)
+  }, []);
 
   return (
     <div style={{ display: 'flex', flexDirection: 'row' }}>
       <SideBar 
         genres={genres}
         selectedGenreId={selectedGenreId}
-        setSelectedGenreId={setSelectedGenreId}
+        setSelectedGenreId={handleClickButton}
       />
       <Content
         movies={movies}

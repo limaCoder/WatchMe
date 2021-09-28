@@ -1,6 +1,7 @@
 import { Button } from "./Button";
 
 import '../styles/sidebar.scss';
+import { memo } from "react";
 
 interface SidebarProps {
   genres: Array<{
@@ -12,7 +13,7 @@ interface SidebarProps {
   setSelectedGenreId: (id: number) => void;
 }
 
-export function SideBar({ genres, selectedGenreId, setSelectedGenreId }: SidebarProps) {
+export function SideBarComponent({ genres, selectedGenreId, setSelectedGenreId }: SidebarProps) {
   function handleClickButton(id: number) {
     setSelectedGenreId(id);
   }
@@ -37,3 +38,5 @@ export function SideBar({ genres, selectedGenreId, setSelectedGenreId }: Sidebar
     </nav>
   )
 }
+
+export const SideBar = memo(SideBarComponent);
